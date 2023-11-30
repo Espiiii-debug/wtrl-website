@@ -1,0 +1,93 @@
+/* Page style */
+body, h1 {
+  font-family: "Raleway", sans-serif;
+}
+
+body, html {
+  height: 100%;
+  margin: 0;
+  scroll-behavior: smooth;
+}
+
+.background-image {
+  background-image: url('../resources/images/background.png');
+  min-height: 100%;
+  background-position: center;
+  background-size: cover;
+  position: relative;
+}
+
+.navbar {
+  position: absolute;
+  top: 0;
+  right: 0;
+  padding: 15px;
+}
+
+
+/* Top contact button */
+.contact-button {
+  background-color: #302d2a; /* Couleur de fond */
+  color: white; /* Couleur du texte */
+  border: none; /* Pas de bordure */
+  padding: 10px 20px; /* Remplissage intérieur */
+  text-align: center; /* Centrer le texte */
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 5px; /* Coins arrondis */
+  cursor: pointer; /* Curseur pointeur */
+  transition-duration: 0.3s; /* Animation de transition */
+}
+
+.contact-button:hover {
+  background-color: #75706b; /* Changement de couleur au survol */
+}
+
+
+/* Contact form */
+.contact-section {
+  font-family: "Raleway", sans-serif;
+  background-color: #f9f9f9; /* Couleur de fond clair */
+  padding: 50px 20px; /* Espacement intérieur */
+  color: #000; /* Couleur du texte noir */
+}
+
+.contact-form {
+  max-width: 600px;
+  margin: 0 auto;
+}
+
+.contact-form input,
+.contact-form textarea {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 20px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.contact-form button {
+  background-color: #302d2a;
+  color: white;
+  border: none;
+  padding: 15px 20px;
+  text-align: center;
+  text-decoration: none;
+  display: inline-block;
+  font-size: 16px;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.contact-form button:hover {
+  background-color: #75706b;
+}
+
+
+/* Animations */
+@media screen and (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+}
