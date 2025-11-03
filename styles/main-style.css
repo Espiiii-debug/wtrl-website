@@ -1,93 +1,260 @@
-/* Page style */
-body, h1 {
-  font-family: "Raleway", sans-serif;
+/* --- GLOBAL --- */
+* {
+  box-sizing: border-box;
 }
 
 body, html {
-  height: 100%;
   margin: 0;
+  padding: 0;
+  height: 100%;
+  font-family: "Poppins", sans-serif;
+  color: white;
+  background-color: #0d0d0d;
   scroll-behavior: smooth;
+  overflow-x: hidden;
 }
 
+h1, h2, p {
+  margin: 0;
+}
+
+/* --- BACKGROUND --- */
 .background-image {
-  background-image: url('../resources/images/background.png');
-  min-height: 100%;
-  background-position: center;
-  background-size: cover;
   position: relative;
+  height: 100vh;
+  background: radial-gradient(circle at 50% 30%, rgba(80,80,80,0.15), rgba(10,10,10,1)),
+              url('../resources/images/background.png') center/cover no-repeat;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  overflow: hidden;
+  perspective: 1000px;
 }
 
-.navbar {
+.ambient-light {
   position: absolute;
-  top: 0;
-  right: 0;
-  padding: 15px;
+  top: -20%;
+  left: -20%;
+  width: 140%;
+  height: 140%;
+  background: radial-gradient(circle at center, rgba(0,204,255,0.12) 0%, transparent 70%);
+  animation: moveLight 10s ease-in-out infinite alternate;
+  filter: blur(60px);
+  z-index: 0;
 }
 
+@keyframes moveLight {
+  0% { transform: translate(0, 0) scale(1); }
+  50% { transform: translate(10%, 15%) scale(1.2); }
+  100% { transform: translate(-5%, -10%) scale(1); }
+}
 
-/* Top contact button */
+.background-image::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(to bottom, rgba(0,0,0,0.25), rgba(0,0,0,0.8));
+  z-index: 1;
+}
+
+/* --- NAVBAR --- */
+.navbar {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  display: flex;
+  justify-content: flex-end;
+  backdrop-filter: blur(12px);
+  background: rgba(20, 20, 20, 0.4);
+  padding: 15px 40px;
+  z-index: 10;
+  border-bottom: 1px solid rgba(255,255,255,0.08);
+}
+
+/* --- CONTACT BUTTON --- */
 .contact-button {
-  background-color: #302d2a; /* Couleur de fond */
-  color: white; /* Couleur du texte */
-  border: none; /* Pas de bordure */
-  padding: 10px 20px; /* Remplissage intérieur */
-  text-align: center; /* Centrer le texte */
+  background: linear-gradient(135deg, #3b3b3b, #1c1c1c);
+  color: white;
+  border: 1px solid rgba(255,255,255,0.1);
+  padding: 10px 28px;
+  font-size: 15px;
+  border-radius: 10px;
+  cursor: pointer;
   text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  border-radius: 5px; /* Coins arrondis */
-  cursor: pointer; /* Curseur pointeur */
-  transition-duration: 0.3s; /* Animation de transition */
+  transition: all 0.3s ease;
+  box-shadow: inset 0 0 5px rgba(255,255,255,0.1), 0 0 10px rgba(0,0,0,0.4);
 }
 
 .contact-button:hover {
-  background-color: #75706b; /* Changement de couleur au survol */
+  background: linear-gradient(135deg, #5a5a5a, #2e2e2e);
+  box-shadow: 0 0 20px rgba(255,255,255,0.08), inset 0 0 10px rgba(255,255,255,0.1);
+  transform: translateY(-2px);
 }
 
+/* --- HERO TEXT --- */
+.hero-content {
+  z-index: 2;
+  position: relative;
+  max-width: 700px;
+  animation: fadeInUp 1.5s ease-out;
+}
 
-/* Contact form */
+@keyframes fadeInUp {
+  from { opacity: 0; transform: translateY(40px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.hero-content h1 {
+  font-size: 4.5rem;
+  letter-spacing: 3px;
+  font-weight: 700;
+  text-shadow: 0 0 40px rgba(255,255,255,0.1);
+  animation: titleGlow 6s infinite alternate ease-in-out;
+}
+
+@keyframes titleGlow {
+  0%, 100% { text-shadow: 0 0 20px rgba(200,200,200,0.15); color: #e5e5e5; }
+  50% { text-shadow: 0 0 60px rgba(255,255,255,0.25); color: #f2f2f2; }
+}
+
+.hero-content hr {
+  width: 70px;
+  border: 2px solid #777;
+  margin: 25px auto;
+}
+
+.hero-content p {
+  font-size: 1.3rem;
+  opacity: 0.85;
+}
+
+/* --- CONTACT SECTION --- */
 .contact-section {
-  font-family: "Raleway", sans-serif;
-  background-color: #f9f9f9; /* Couleur de fond clair */
-  padding: 50px 20px; /* Espacement intérieur */
-  color: #000; /* Couleur du texte noir */
+  background: linear-gradient(to bottom, #111, #0a0a0a);
+  padding: 90px 20px;
+  color: #fff;
+  text-align: center;
+}
+
+.contact-section h2 {
+  font-size: 2.5rem;
+  margin-bottom: 25px;
+  background: linear-gradient(135deg, #bbb, #eee);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .contact-form {
   max-width: 600px;
   margin: 0 auto;
+  text-align: left;
 }
 
+.contact-form label {
+  display: block;
+  margin-bottom: 15px;
+}
+
+/* --- MESH EFFECT BASE --- */
+@keyframes mesh-glow {
+  0% { background-position: 0% 50%; opacity: 0.15; }
+  50% { background-position: 100% 50%; opacity: 0.25; }
+  100% { background-position: 0% 50%; opacity: 0.15; }
+}
+
+/* --- INPUTS & TEXTAREAS --- */
 .contact-form input,
 .contact-form textarea {
   width: 100%;
-  padding: 10px;
-  margin-bottom: 20px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
-
-.contact-form button {
-  background-color: #302d2a;
+  background: rgba(255, 255, 255, 0.04);
+  border: 1px solid rgba(255,255,255,0.15);
   color: white;
-  border: none;
-  padding: 15px 20px;
-  text-align: center;
-  text-decoration: none;
-  display: inline-block;
-  font-size: 16px;
-  border-radius: 5px;
+  border-radius: 10px;
+  padding: 12px 15px;
+  font-size: 15px;
+  outline: none;
+  position: relative;
+  overflow: hidden;
+  transition: border-color 0.3s ease, box-shadow 0.3s ease, background 0.5s ease;
+}
+
+/* --- GLOW MESH REVEAL --- */
+.contact-form input:focus,
+.contact-form textarea:focus,
+.contact-form input:hover,
+.contact-form textarea:hover {
+  border-color: #aaa;
+  box-shadow: 0 0 12px rgba(255,255,255,0.1);
+  background:
+    repeating-linear-gradient(
+      45deg,
+      rgba(255,255,255,0.05) 0px,
+      rgba(255,255,255,0.05) 2px,
+      transparent 2px,
+      transparent 6px
+    ),
+    repeating-linear-gradient(
+      -45deg,
+      rgba(255,255,255,0.04) 0px,
+      rgba(255,255,255,0.04) 2px,
+      transparent 2px,
+      transparent 6px
+    ),
+    rgba(255,255,255,0.04);
+  background-size: 100px 100px, 100px 100px, auto;
+  animation: mesh-glow 8s linear infinite;
+}
+
+/* --- BUTTON --- */
+.contact-form button {
+  background: linear-gradient(135deg, #3b3b3b, #1c1c1c);
+  border: 1px solid rgba(255,255,255,0.15);
+  color: white;
+  font-weight: 600;
+  padding: 15px 25px;
+  border-radius: 10px;
   cursor: pointer;
+  font-size: 16px;
+  width: 100%;
+  transition: all 0.3s ease;
+  box-shadow: inset 0 0 6px rgba(255,255,255,0.08);
+  overflow: hidden;
+  position: relative;
 }
 
+/* --- BUTTON GLOW MESH ON HOVER --- */
 .contact-form button:hover {
-  background-color: #75706b;
+  background:
+    repeating-linear-gradient(
+      45deg,
+      rgba(255,255,255,0.05) 0px,
+      rgba(255,255,255,0.05) 2px,
+      transparent 2px,
+      transparent 6px
+    ),
+    repeating-linear-gradient(
+      -45deg,
+      rgba(255,255,255,0.04) 0px,
+      rgba(255,255,255,0.04) 2px,
+      transparent 2px,
+      transparent 6px
+    ),
+    linear-gradient(135deg, #5a5a5a, #2e2e2e);
+  background-size: 120px 120px, 120px 120px, auto;
+  animation: mesh-glow 6s linear infinite;
+  box-shadow: 0 0 20px rgba(255,255,255,0.08), inset 0 0 10px rgba(255,255,255,0.1);
+  transform: translateY(-2px);
 }
 
-
-/* Animations */
-@media screen and (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
+/* --- FOOTER --- */
+footer {
+  background-color: #0a0a0a;
+  color: #777;
+  text-align: center;
+  padding: 25px;
+  font-size: 0.9rem;
+  border-top: 1px solid rgba(255,255,255,0.1);
+  letter-spacing: 0.5px;
 }
